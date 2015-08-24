@@ -3,8 +3,6 @@ package example.hello;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.Arrays;
-import java.util.Optional;
 
 public class Server implements Hello {
 
@@ -40,13 +38,7 @@ public class Server implements Hello {
             //The following code in the server obtains a stub for a registry on the local host
             // and default registry port and then uses the registry stub to bind the name
             // "Hello" to the remote object's stub in that registry:
-
-            Optional<String> name = Arrays.asList(registry.list()).stream()
-                    .filter(s -> s.equals("Hello"))
-                    .findFirst();
-            if(!name.isPresent()) {
-                registry.bind("Hello", stub);
-            }
+            registry.rebind("Hello", stub);
 
             //The static method LocateRegistry.getRegistry that takes no arguments returns
             // a stub that implements the remote interface java.rmi.registry.Registry and
