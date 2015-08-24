@@ -1,6 +1,7 @@
 package example.hello;
 
 import org.junit.Before;
+import org.junit.Test;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
@@ -19,12 +20,12 @@ public class RmiHelloWorldTest {
             e.printStackTrace();
         }
     }
-//
-//    @Test
-//    public void foo() {
-//        Server.main(null);
-//        Client.main(null);
-//
-//    }
+
+    @Test
+    public void runRmiTest() {
+        Server.main(null);
+        String args[] = {"localhost"};
+        Client.main(args);
+    }
 
 }
